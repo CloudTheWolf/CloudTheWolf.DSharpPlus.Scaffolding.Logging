@@ -8,29 +8,33 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
     /// </summary>
     public class Logger
     {
-        /// <summary>
-        /// Logger Factory for CloudTheWolf.DSharpPlus.Scaffolding
-        /// </summary>
-        public static ILoggerFactory LoggerFactory;
 
         /// <summary>
-        /// ILogger for CloudTheWolf.DSharpPlus.Scaffolding
+        /// Initializes a new instance of the <see cref="Logger"/> class. 
         /// </summary>
-        public static ILogger<Logger> ConsoleLogger;
-
-        /// <summary>
-        /// Create a new ILogger for CloudTheWolf.DSharpPlus.Scaffolding
-        /// </summary>
-        /// <param name="logger"></param>
+        /// <param name="logger">
+        /// See <see cref="ILogger"/>
+        /// </param>
         public Logger(ILogger<Logger> logger)
         {
             ConsoleLogger = logger;
         }
 
         /// <summary>
+        /// Gets or sets <see cref="ILoggerFactory"/>
+        /// </summary>
+        public static ILoggerFactory LoggerFactory { get; set; }
+
+        /// <summary>
+        /// Gets or sets <see cref="ILogger"/>
+        /// </summary>
+        public static ILogger<Logger> ConsoleLogger { get; set; }
+
+
+        /// <summary>
         /// Log a message as Information
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Logging Message</param>
         public static void LogInfo(string message)
         {
             ConsoleLogger.LogInformation(message);
@@ -39,7 +43,7 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
         /// <summary>
         /// Log a message as Warning
         /// </summary>
-        /// <param name="message"></param>
+        /// <param name="message">Logging Message</param>
         public static void LogWarning(string message)
         {
             ConsoleLogger.LogWarning(message);
@@ -48,12 +52,11 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
         /// <summary>
         /// Log a message as Error and pass an <see cref="Exception"/>
         /// </summary>
-        /// <param name="message"></param>
-        /// <param name="exception"></param>
+        /// <param name="message">Logging Message</param>
+        /// <param name="exception">Exception details</param>
         public static void LogError(string message, Exception exception)
         {
             ConsoleLogger.LogError(message, exception);
         }
-
     }
 }
