@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
+using Serilog;
 
 namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
 {
@@ -10,53 +10,19 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
     {
 
         /// <summary>
+        /// Gets or sets <see cref="Microsoft.Extensions.Logging.ILogger"/>
+        /// </summary>
+        public static ILogger Log { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Logger"/> class. 
         /// </summary>
         /// <param name="logger">
-        /// See <see cref="ILogger"/>
+        /// See <see cref="Microsoft.Extensions.Logging.ILogger"/>
         /// </param>
-        public Logger(ILogger<Logger> logger)
+        public Logger(ILogger logger)
         {
-            ConsoleLogger = logger;
-        }
-
-        /// <summary>
-        /// Gets or sets <see cref="ILoggerFactory"/>
-        /// </summary>
-        public static ILoggerFactory LoggerFactory { get; set; }
-
-        /// <summary>
-        /// Gets or sets <see cref="ILogger"/>
-        /// </summary>
-        public static ILogger<Logger> ConsoleLogger { get; set; }
-
-
-        /// <summary>
-        /// Log a message as Information
-        /// </summary>
-        /// <param name="message">Logging Message</param>
-        public static void LogInfo(string message)
-        {
-            ConsoleLogger.LogInformation(message);
-        }
-
-        /// <summary>
-        /// Log a message as Warning
-        /// </summary>
-        /// <param name="message">Logging Message</param>
-        public static void LogWarning(string message)
-        {
-            ConsoleLogger.LogWarning(message);
-        }
-
-        /// <summary>
-        /// Log a message as Error and pass an <see cref="Exception"/>
-        /// </summary>
-        /// <param name="message">Logging Message</param>
-        /// <param name="exception">Exception details</param>
-        public static void LogError(string message, Exception exception)
-        {
-            ConsoleLogger.LogError(message, exception);
+            Log = logger;
         }
     }
 }
