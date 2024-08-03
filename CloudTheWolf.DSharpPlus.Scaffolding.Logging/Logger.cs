@@ -21,7 +21,7 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
         {
             var serilogLogger = new LoggerConfiguration()
                 .WriteTo.Console(outputTemplate:
-                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}", theme: AnsiConsoleTheme.Code)
+                    "[{Timestamp:yyyy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}", theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
             Log = new SerilogLoggerFactory(serilogLogger).CreateLogger("CloudTheWolf.DSharpPlus.Scaffolding");
