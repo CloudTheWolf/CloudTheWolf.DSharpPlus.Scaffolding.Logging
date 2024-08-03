@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Serilog;
+using Serilog.Extensions.Logging;
 
 namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
 {
@@ -10,17 +11,19 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
         /// <summary>
         /// Gets or sets <see cref="Microsoft.Extensions.Logging.ILogger"/>
         /// </summary>
-        public static ILogger Log { get; set; }
+        public static Microsoft.Extensions.Logging.ILogger Log { get; set; }
 
         /// <summary>
-        /// Initializes the logger.
+        /// Initializes the logger with Serilog.
         /// </summary>
-        /// <param name="logger">
-        /// See <see cref="Microsoft.Extensions.Logging.ILogger"/>
-        /// </param>
-        public static void Initialize(ILogger logger)
+        public static void Initialize()
         {
-            Log = logger;
+            var serilogLogger = new LoggerConfiguration()
+                .WriteTo.Console(outputTemplate:
+                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+                .CreateLogger();
+
+            Log = new SerilogLoggerFactory(serilogLogger).CreateLogger("CloudTheWolf.DSharpPlus.Scaffolding");
         }
     }
 }
