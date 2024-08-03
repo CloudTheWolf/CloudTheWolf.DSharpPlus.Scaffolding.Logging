@@ -1,26 +1,24 @@
-﻿using System;
-using Serilog;
+﻿using Microsoft.Extensions.Logging;
 
 namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
 {
     /// <summary>
     /// Logger for CloudTheWolf.DSharpPlus.Scaffolding 
     /// </summary>
-    public class Logger
+    public static class Logger
     {
-
         /// <summary>
         /// Gets or sets <see cref="Microsoft.Extensions.Logging.ILogger"/>
         /// </summary>
         public static ILogger Log { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Logger"/> class. 
+        /// Initializes the logger.
         /// </summary>
         /// <param name="logger">
         /// See <see cref="Microsoft.Extensions.Logging.ILogger"/>
         /// </param>
-        public Logger(ILogger logger)
+        public static void Initialize(ILogger logger)
         {
             Log = logger;
         }
