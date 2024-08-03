@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using Serilog.Extensions.Logging;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
 {
@@ -20,7 +21,7 @@ namespace CloudTheWolf.DSharpPlus.Scaffolding.Logging
         {
             var serilogLogger = new LoggerConfiguration()
                 .WriteTo.Console(outputTemplate:
-                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+                    "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}", theme: AnsiConsoleTheme.Code)
                 .CreateLogger();
 
             Log = new SerilogLoggerFactory(serilogLogger).CreateLogger("CloudTheWolf.DSharpPlus.Scaffolding");
